@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-public class Imovel implements EntidadeBase {
+public class Imovel  {
 
 	@Id @GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Integer id;

@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-public class Cliente implements EntidadeBase {
+public class Cliente  {
 
     @Id @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;

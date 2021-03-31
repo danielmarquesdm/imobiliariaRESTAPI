@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-public class Locacao implements EntidadeBase{
+public class Locacao {
 
 	@Id @GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Integer id;

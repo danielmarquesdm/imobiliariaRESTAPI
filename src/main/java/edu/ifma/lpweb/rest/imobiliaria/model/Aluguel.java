@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-public class Aluguel implements EntidadeIdFornecido {
+public class Aluguel {
 
     @Id
     private LocalDate dataDeVencimento;
