@@ -14,26 +14,26 @@ public class Locacao {
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "id_imovel", insertable = true, updatable = true)
+	@JoinColumn(name = "id_imovel")
 	private Imovel imovel;
 
-
 	@ManyToOne
-	@JoinColumn(name = "id_inquilino", insertable = true, updatable = true)
+	@JoinColumn(name = "id_inquilino")
 	private Cliente cliente;
 
+	@Column(name = "valor_aluguel")
 	private BigDecimal valorDoAluguel;
-
+	@Column(name = "perc_multa")
 	private BigDecimal percentualDeMulta;
-
+	@Column(name = "data_inicio")
 	private LocalDate dataDeInicio;
-
-	private LocalDate dateFinal;
-
+	@Column(name = "data_fim")
+	private LocalDate dataFinal;
+	@Column(name = "dia_vencimento")
 	private String diaDoVencimento;
-
+	@Column
 	private boolean ativo;
-
+	@Column(name = "obs")
 	private String observacoes;
 
 }

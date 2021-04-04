@@ -1,10 +1,10 @@
 package edu.ifma.lpweb.rest.imobiliaria.model;
 
-import com.sun.istack.NotNull;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+
 @Data
 @Entity
 public class Imovel  {
@@ -12,25 +12,23 @@ public class Imovel  {
 	@Id @GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@NotNull //valida na camada service
-	@Column(nullable = false) //cria coluna not null no banco
+	@Column(nullable = false, name = "tipo_imovel")
 	private String tipoImovel;
-
-	@Embedded
-	private Endereco endereco;
-
+	@Column
+	private String endereco;
+	@Column
+	private String cep;
+	@Column
 	private double metragem;
-
-	private int qtdDormitorios;
-
-	private int qtdBanheiros;
-
-	private int qtdSuites;
-
-	private int qtdVagasNaGaragem;
-
+	@Column
+	private int dormitorios;
+	@Column
+	private int banheiros;
+	@Column
+	private int suites;
+	@Column(name = "valor_aluguel_sug")
 	private BigDecimal valorDeAluguelSugerido;
-
+	@Column(name = "obs")
 	private String observacoes;
 
 }

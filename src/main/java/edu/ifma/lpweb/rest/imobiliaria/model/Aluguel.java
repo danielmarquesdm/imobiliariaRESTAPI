@@ -2,9 +2,7 @@ package edu.ifma.lpweb.rest.imobiliaria.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -12,14 +10,18 @@ import java.time.LocalDate;
 @Entity
 public class Aluguel {
 
-    @Id
-    private LocalDate dataDeVencimento;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @ManyToOne
+    @JoinColumn(name = "id_locacao")
     private Locacao locacao;
 
+    @Column(name = "dt_vencimento")
+    private LocalDate dataDeVencimento;
+    @Column(name = "valor_pago")
     private BigDecimal valorPago;
-    private LocalDate dataDoPagamento;
+    @Column(name = "obs")
     private String observacoes;
 
 }
