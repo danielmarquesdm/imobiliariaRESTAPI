@@ -10,7 +10,8 @@ import java.time.LocalDate;
 @Entity
 public class Aluguel {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne

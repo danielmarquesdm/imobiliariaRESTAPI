@@ -7,9 +7,10 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-public class Cliente  {
+public class Cliente {
 
-    @Id @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "nome_cliente")
