@@ -1,5 +1,6 @@
 package edu.ifma.lpweb.rest.imobiliaria.service.impl;
 
+import edu.ifma.lpweb.rest.imobiliaria.controller.request.ClienteRequest;
 import edu.ifma.lpweb.rest.imobiliaria.controller.response.ClienteResponse;
 import edu.ifma.lpweb.rest.imobiliaria.model.Cliente;
 import edu.ifma.lpweb.rest.imobiliaria.repository.ClienteRepository;
@@ -22,6 +23,11 @@ public class ClienteServiceImpl implements ClienteService {
     @Override
     public ClienteResponse findById(Integer id) {
         return ClienteResponse.toResponse(this.getCliente(id));
+    }
+
+    @Override
+    public ClienteResponse save(ClienteRequest clienteRequest) {
+        return ClienteResponse.toResponse(this.clienteRepository.save(clienteRequest.toModel()));
     }
 
     private Cliente getCliente(Integer id) {

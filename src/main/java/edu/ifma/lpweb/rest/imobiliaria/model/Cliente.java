@@ -23,4 +23,12 @@ public class Cliente {
     private LocalDate dataNascimento;
     @Column(nullable = false)
     private String telefone;
+
+    public Cliente(String nome, String cpf, String telefone, String email, LocalDate dataNascimento) {
+        this.setNomeCliente(nome);
+        this.setCpf(cpf);
+        this.setTelefone(telefone);
+        this.setEmail(email);
+        this.setDataNascimento(dataNascimento);
+    }
 }

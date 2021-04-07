@@ -1,5 +1,6 @@
 package edu.ifma.lpweb.rest.imobiliaria.service;
 
+import edu.ifma.lpweb.rest.imobiliaria.controller.request.ClienteRequest;
 import edu.ifma.lpweb.rest.imobiliaria.controller.response.ClienteResponse;
 import edu.ifma.lpweb.rest.imobiliaria.model.Cliente;
 import edu.ifma.lpweb.rest.imobiliaria.repository.ClienteRepository;
@@ -14,4 +15,6 @@ public interface ClienteService {
     List<ClienteResponse> findAll();
 
     ClienteResponse findById(Integer id);
+
+    ClienteResponse save(ClienteRequest clienteRequest);
 }
