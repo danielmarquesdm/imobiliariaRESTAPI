@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 public class ClienteResponse {
-    private Integer id;
+    private Long id;
     private String nome;
     private String cpf;
     private String telefone;

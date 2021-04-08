@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -11,7 +12,7 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "nome_cliente")
     private String nomeCliente;
@@ -23,12 +24,7 @@ public class Cliente {
     private LocalDate dataNascimento;
     @Column(nullable = false)
     private String telefone;
+    @Column
+    private LocalDateTime deletedAt;
 
-    public Cliente(String nome, String cpf, String telefone, String email, LocalDate dataNascimento) {
-        this.setNomeCliente(nome);
-        this.setCpf(cpf);
-        this.setTelefone(telefone);
-        this.setEmail(email);
-        this.setDataNascimento(dataNascimento);
-    }
 }

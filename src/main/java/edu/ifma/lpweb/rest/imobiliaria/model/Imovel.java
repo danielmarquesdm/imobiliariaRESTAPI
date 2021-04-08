@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -11,7 +12,7 @@ public class Imovel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(nullable = false, name = "tipo_imovel")
     private String tipoImovel;
@@ -31,5 +32,7 @@ public class Imovel {
     private BigDecimal valorDeAluguelSugerido;
     @Column(name = "obs")
     private String observacoes;
+    @Column
+    private LocalDateTime deletedAt;
 
 }
