@@ -17,7 +17,7 @@ import static org.springframework.http.ResponseEntity.created;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping("/clientes/")
+@RequestMapping(value = "/clientes/")
 public class ClienteController {
     @Autowired
     private ClienteService clienteService;
