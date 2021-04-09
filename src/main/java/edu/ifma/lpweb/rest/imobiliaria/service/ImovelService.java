@@ -14,4 +14,8 @@ public interface ImovelService {
     ImovelResponse findById(Long id);
 
     ImovelResponse save(ImovelRequest imovelRequest);
+
+    ImovelResponse update(ImovelRequest imovelRequest, Long id);
+
+    void remove(Long id);
 }

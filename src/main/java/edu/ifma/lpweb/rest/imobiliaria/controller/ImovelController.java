@@ -17,12 +17,12 @@ import static org.springframework.http.ResponseEntity.created;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping(value = "/imoveis/")
+@RequestMapping(value = "/imoveis")
 public class ImovelController {
     @Autowired
     private ImovelService imovelService;
 
-    @GetMapping
+    @GetMapping(value = "/")
     public ResponseEntity<List<Imovel>> findAll() {
         return ok(this.imovelService.findAll());
     }
@@ -32,11 +32,22 @@ public class ImovelController {
         return ok(this.imovelService.findById(id));
     }
 
-    @PostMapping
+    @PostMapping(value = "/")
     public ResponseEntity<ImovelResponse> save(@RequestBody @Valid ImovelRequest imovelRequest,
                                                UriComponentsBuilder uriBuilder) {
         var response = this.imovelService.save(imovelRequest);
         URI uri = uriBuilder.path("/imoveis/").buildAndExpand(response.getId()).toUri();
         return created(uri).body(response);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<ImovelResponse> update(@RequestBody @Valid ImovelRequest imovelRequest, @PathVariable("id") Long id) {
+        return ok(this.imovelService.update(imovelRequest, id));
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Object> remove(@PathVariable("id") Long id) {
+        this.imovelService.remove(id);
+        return ok().build();
     }
 }

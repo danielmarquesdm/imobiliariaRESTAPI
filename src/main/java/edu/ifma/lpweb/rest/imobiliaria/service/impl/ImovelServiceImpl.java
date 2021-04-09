@@ -9,6 +9,7 @@ import edu.ifma.lpweb.rest.imobiliaria.service.ImovelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -29,6 +30,19 @@ public class ImovelServiceImpl implements ImovelService {
     @Override
     public ImovelResponse save(ImovelRequest imovelRequest) {
         return ImovelResponse.toResponse(this.imovelRepository.save(imovelRequest.toModel()));
+    }
+
+    @Override
+    public ImovelResponse update(ImovelRequest imovelRequest, Long id) {
+        final Imovel response = this.getImovel(id);
+        return ImovelResponse.toResponse(this.imovelRepository.save(imovelRequest.toModel(response.getId())));
+    }
+
+    @Override
+    public void remove(Long id) {
+        final Imovel imovel = this.getImovel(id);
+        imovel.setDeletedAt(LocalDateTime.now());
+        this.imovelRepository.save(imovel);
     }
 
     private Imovel getImovel(Long id) {
