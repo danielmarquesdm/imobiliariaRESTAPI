@@ -9,8 +9,10 @@ import edu.ifma.lpweb.rest.imobiliaria.service.ImovelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ImovelServiceImpl implements ImovelService {
@@ -43,6 +45,12 @@ public class ImovelServiceImpl implements ImovelService {
         final Imovel imovel = this.getImovel(id);
         imovel.setDeletedAt(LocalDateTime.now());
         this.imovelRepository.save(imovel);
+    }
+
+    @Override
+    public List<ImovelResponse> searchBy(String bairro, BigDecimal minValor, BigDecimal maxValor) {
+        return this.imovelRepository.searchBy(bairro, minValor, maxValor).stream()
+                .map(ImovelResponse::toResponse).collect(Collectors.toList());
     }
 
     private Imovel getImovel(Long id) {

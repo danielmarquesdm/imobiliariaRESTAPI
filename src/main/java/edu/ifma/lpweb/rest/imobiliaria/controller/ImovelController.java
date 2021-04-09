@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.net.URI;
 import java.util.List;
 
@@ -30,6 +33,15 @@ public class ImovelController {
     @GetMapping(value = "/{id}")
     public ResponseEntity<ImovelResponse> findById(@PathVariable("id") Long id) {
         return ok(this.imovelService.findById(id));
+    }
+
+    @GetMapping(value = "/search")
+    public ResponseEntity<List<ImovelResponse>> searchBy(
+            @RequestParam(value = "bairro", required = false) @NotEmpty String bairro,
+            @RequestParam(value = "min", required = false) @NotNull BigDecimal minValor,
+            @RequestParam(value = "max", required = false) @NotNull BigDecimal maxValor
+    ) {
+        return ok(this.imovelService.searchBy(bairro, minValor, maxValor));
     }
 
     @PostMapping(value = "/")
