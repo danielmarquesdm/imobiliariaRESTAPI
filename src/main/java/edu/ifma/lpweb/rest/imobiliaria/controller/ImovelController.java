@@ -2,9 +2,10 @@ package edu.ifma.lpweb.rest.imobiliaria.controller;
 
 import edu.ifma.lpweb.rest.imobiliaria.controller.request.ImovelRequest;
 import edu.ifma.lpweb.rest.imobiliaria.controller.response.ImovelResponse;
-import edu.ifma.lpweb.rest.imobiliaria.model.Imovel;
 import edu.ifma.lpweb.rest.imobiliaria.service.ImovelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -25,9 +26,11 @@ public class ImovelController {
     @Autowired
     private ImovelService imovelService;
 
-    @GetMapping(value = "/")
-    public ResponseEntity<List<Imovel>> findAll() {
-        return ok(this.imovelService.findAll());
+    @GetMapping
+    public ResponseEntity<List<ImovelResponse>> findAll(@RequestParam(value = "page", defaultValue = "0") int page,
+                                                        @RequestParam(value = "limit", defaultValue = "10") int limit) {
+        Pageable pageable = PageRequest.of(page, limit);
+        return ok(this.imovelService.findAll(pageable));
     }
 
     @GetMapping(value = "/{id}")
@@ -44,7 +47,7 @@ public class ImovelController {
         return ok(this.imovelService.searchBy(bairro, minValor, maxValor));
     }
 
-    @PostMapping(value = "/")
+    @PostMapping
     public ResponseEntity<ImovelResponse> save(@RequestBody @Valid ImovelRequest imovelRequest,
                                                UriComponentsBuilder uriBuilder) {
         var response = this.imovelService.save(imovelRequest);

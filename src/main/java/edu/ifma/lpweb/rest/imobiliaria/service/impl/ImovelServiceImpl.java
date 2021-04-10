@@ -7,6 +7,7 @@ import edu.ifma.lpweb.rest.imobiliaria.model.Imovel;
 import edu.ifma.lpweb.rest.imobiliaria.repository.ImovelRepository;
 import edu.ifma.lpweb.rest.imobiliaria.service.ImovelService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -20,8 +21,9 @@ public class ImovelServiceImpl implements ImovelService {
     private ImovelRepository imovelRepository;
 
     @Override
-    public List<Imovel> findAll() {
-        return this.imovelRepository.findAll();
+    public List<ImovelResponse> findAll(Pageable pageable) {
+        return this.imovelRepository.findAll(pageable).getContent()
+                .stream().map(ImovelResponse::toResponse).collect(Collectors.toList());
     }
 
     @Override

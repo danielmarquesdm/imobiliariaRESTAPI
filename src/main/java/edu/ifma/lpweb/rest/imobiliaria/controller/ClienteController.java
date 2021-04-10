@@ -17,7 +17,7 @@ import static org.springframework.http.ResponseEntity.created;
 import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
-@RequestMapping(value = "/clientes/")
+@RequestMapping(value = "/clientes")
 public class ClienteController {
     @Autowired
     private ClienteService clienteService;
@@ -36,7 +36,7 @@ public class ClienteController {
     public ResponseEntity<ClienteResponse> save(@RequestBody @Valid ClienteRequest clienteRequest,
                                                 UriComponentsBuilder uriBuilder) {
         var response = this.clienteService.save(clienteRequest);
-        URI uri = uriBuilder.path("/clientes/").buildAndExpand(response.getId()).toUri();
+        URI uri = uriBuilder.path("/clientes").buildAndExpand(response.getId()).toUri();
         return created(uri).body(response);
     }
 
