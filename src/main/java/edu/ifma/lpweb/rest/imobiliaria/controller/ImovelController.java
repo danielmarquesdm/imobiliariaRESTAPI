@@ -3,6 +3,8 @@ package edu.ifma.lpweb.rest.imobiliaria.controller;
 import edu.ifma.lpweb.rest.imobiliaria.controller.request.ImovelRequest;
 import edu.ifma.lpweb.rest.imobiliaria.controller.response.ImovelResponse;
 import edu.ifma.lpweb.rest.imobiliaria.service.ImovelService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,12 +22,15 @@ import java.util.List;
 import static org.springframework.http.ResponseEntity.created;
 import static org.springframework.http.ResponseEntity.ok;
 
+@Api(value = "Imovel Endpoint", tags = {"ImovelEndpoint"})
 @RestController
 @RequestMapping(value = "/imoveis")
 public class ImovelController {
     @Autowired
     private ImovelService imovelService;
 
+    @ApiOperation(value = "Busca todos os imóveis registrados com valor default de paginação igual a zero " +
+            "e 10 elementos por página")
     @GetMapping
     public ResponseEntity<List<ImovelResponse>> findAll(@RequestParam(value = "page", defaultValue = "0") int page,
                                                         @RequestParam(value = "limit", defaultValue = "10") int limit) {
@@ -33,11 +38,13 @@ public class ImovelController {
         return ok(this.imovelService.findAll(pageable));
     }
 
+    @ApiOperation(value = "Busca imóvel por id")
     @GetMapping(value = "/{id}")
     public ResponseEntity<ImovelResponse> findById(@PathVariable("id") Long id) {
         return ok(this.imovelService.findById(id));
     }
 
+    @ApiOperation(value = "Busca imóveis permitindo filtrar por bairro e/ou valor de aluguel sugerido (menor e maior valor")
     @GetMapping(value = "/search")
     public ResponseEntity<List<ImovelResponse>> searchBy(
             @RequestParam(value = "bairro", required = false) @NotEmpty String bairro,
@@ -47,6 +54,7 @@ public class ImovelController {
         return ok(this.imovelService.searchBy(bairro, minValor, maxValor));
     }
 
+    @ApiOperation(value = "Cadastra um novo imóvel")
     @PostMapping
     public ResponseEntity<ImovelResponse> save(@RequestBody @Valid ImovelRequest imovelRequest,
                                                UriComponentsBuilder uriBuilder) {
@@ -55,11 +63,13 @@ public class ImovelController {
         return created(uri).body(response);
     }
 
+    @ApiOperation(value = "Atualiza um imóvel já cadastrado por id")
     @PutMapping(value = "/{id}")
     public ResponseEntity<ImovelResponse> update(@RequestBody @Valid ImovelRequest imovelRequest, @PathVariable("id") Long id) {
         return ok(this.imovelService.update(imovelRequest, id));
     }
 
+    @ApiOperation(value = "Remove um imóvel já cadastrado usando exclusão lógica")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> remove(@PathVariable("id") Long id) {
         this.imovelService.remove(id);
