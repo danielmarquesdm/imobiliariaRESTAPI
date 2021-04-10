@@ -6,6 +6,8 @@ import edu.ifma.lpweb.rest.imobiliaria.service.ImovelService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +34,7 @@ public class ImovelController {
     @ApiOperation(value = "Busca todos os imóveis registrados com valor default de paginação igual a zero " +
             "e 10 elementos por página")
     @GetMapping
+    @Cacheable(value = "listaPaginadaDeImoveis")
     public ResponseEntity<List<ImovelResponse>> findAll(@RequestParam(value = "page", defaultValue = "0") int page,
                                                         @RequestParam(value = "limit", defaultValue = "10") int limit) {
         Pageable pageable = PageRequest.of(page, limit);
@@ -56,6 +59,7 @@ public class ImovelController {
 
     @ApiOperation(value = "Cadastra um novo imóvel")
     @PostMapping
+    @CacheEvict(value = "listaPaginadaDeImoveis", allEntries = true)
     public ResponseEntity<ImovelResponse> save(@RequestBody @Valid ImovelRequest imovelRequest,
                                                UriComponentsBuilder uriBuilder) {
         var response = this.imovelService.save(imovelRequest);
