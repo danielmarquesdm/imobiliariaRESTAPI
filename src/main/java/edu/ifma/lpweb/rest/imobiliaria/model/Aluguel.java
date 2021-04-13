@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -24,5 +25,6 @@ public class Aluguel {
     private BigDecimal valorPago;
     @Column(name = "obs")
     private String observacoes;
-
+    @Column
+    private LocalDateTime deletedAt;
 }
