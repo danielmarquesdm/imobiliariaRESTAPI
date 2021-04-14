@@ -3,6 +3,7 @@ package edu.ifma.lpweb.rest.imobiliaria.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -22,8 +23,23 @@ public class Cliente {
     private String email;
     @Column(name = "dt_nascimento")
     private LocalDate dataNascimento;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "numero", column = @Column(name = "telefone1")),
+            @AttributeOverride(name = "isCelular", column = @Column(name = "is_celular_1"))
+    })
+    @NotNull
     @Column(nullable = false)
-    private String telefone;
+    private Telefone telefone1;
+
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "numero", column = @Column(name = "telefone2")),
+            @AttributeOverride(name = "isCelular", column = @Column(name = "is_celular_2"))
+    })
+    private Telefone telefone2;
+
     @Column
     private LocalDateTime deletedAt;
 

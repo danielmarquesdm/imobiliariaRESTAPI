@@ -1,5 +1,6 @@
 package edu.ifma.lpweb.rest.imobiliaria.controller.response;
 
+import edu.ifma.lpweb.rest.imobiliaria.model.Endereco;
 import edu.ifma.lpweb.rest.imobiliaria.model.Imovel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,8 +12,7 @@ import java.math.BigDecimal;
 public class ImovelResponse {
     private Long id;
     private String tipoImovel;
-    private String endereco;
-    private String cep;
+    private Endereco endereco;
     private double metragem;
     private int dormitorios;
     private int suites;
@@ -25,7 +25,6 @@ public class ImovelResponse {
                 imovel.getId(),
                 imovel.getTipoImovel(),
                 imovel.getEndereco(),
-                imovel.getCep(),
                 imovel.getMetragem(),
                 imovel.getDormitorios(),
                 imovel.getSuites(),

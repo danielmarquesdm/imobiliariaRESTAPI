@@ -15,11 +15,11 @@ public class Locacao {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_imovel")
+    @JoinColumn(name = "id_imovel", insertable = true, updatable = true)
     private Imovel imovel;
 
     @ManyToOne
-    @JoinColumn(name = "id_inquilino")
+    @JoinColumn(name = "id_inquilino", insertable = true, updatable = true)
     private Cliente cliente;
 
     @Column(name = "valor_aluguel")

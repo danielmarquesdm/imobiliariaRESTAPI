@@ -16,10 +16,9 @@ public class Imovel {
 
     @Column(nullable = false, name = "tipo_imovel")
     private String tipoImovel;
-    @Column
-    private String endereco;
-    @Column
-    private String cep;
+    @Embedded
+    @Column(nullable = false)
+    private Endereco endereco;
     @Column
     private double metragem;
     @Column

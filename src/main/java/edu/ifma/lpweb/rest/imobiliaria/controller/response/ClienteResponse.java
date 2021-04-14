@@ -1,6 +1,7 @@
 package edu.ifma.lpweb.rest.imobiliaria.controller.response;
 
 import edu.ifma.lpweb.rest.imobiliaria.model.Cliente;
+import edu.ifma.lpweb.rest.imobiliaria.model.Telefone;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,7 +13,8 @@ public class ClienteResponse {
     private Long id;
     private String nome;
     private String cpf;
-    private String telefone;
+    private Telefone telefone1;
+    private Telefone telefone2;
     private String email;
     private LocalDate dataNascimento;
 
@@ -21,7 +23,8 @@ public class ClienteResponse {
                 cliente.getId(),
                 cliente.getNomeCliente(),
                 cliente.getCpf(),
-                cliente.getTelefone(),
+                cliente.getTelefone1(),
+                cliente.getTelefone2(),
                 cliente.getEmail(),
                 cliente.getDataNascimento()
         );

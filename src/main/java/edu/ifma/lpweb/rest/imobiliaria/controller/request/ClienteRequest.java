@@ -1,6 +1,7 @@
 package edu.ifma.lpweb.rest.imobiliaria.controller.request;
 
 import edu.ifma.lpweb.rest.imobiliaria.model.Cliente;
+import edu.ifma.lpweb.rest.imobiliaria.model.Telefone;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -14,7 +15,9 @@ public class ClienteRequest {
     @NotEmpty
     private String cpf;
     @NotEmpty
-    private String telefone;
+    private Telefone telefone1;
+    @NotEmpty
+    private Telefone telefone2;
     @NotEmpty
     private String email;
     @NotNull
@@ -24,7 +27,8 @@ public class ClienteRequest {
         Cliente cliente = new Cliente();
         cliente.setNomeCliente(this.getNome());
         cliente.setCpf(this.getCpf());
-        cliente.setTelefone(this.getTelefone());
+        cliente.setTelefone1(this.getTelefone1());
+        cliente.setTelefone2(this.getTelefone2());
         cliente.setEmail(this.getEmail());
         cliente.setDataNascimento(this.getDataNascimento());
         return cliente;
@@ -35,7 +39,8 @@ public class ClienteRequest {
         cliente.setId(id);
         cliente.setNomeCliente(this.getNome());
         cliente.setCpf(this.getCpf());
-        cliente.setTelefone(this.getTelefone());
+        cliente.setTelefone1(this.getTelefone1());
+        cliente.setTelefone2(this.getTelefone2());
         cliente.setEmail(this.getEmail());
         cliente.setDataNascimento(this.getDataNascimento());
         return cliente;

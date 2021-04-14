@@ -1,5 +1,6 @@
 package edu.ifma.lpweb.rest.imobiliaria.controller.request;
 
+import edu.ifma.lpweb.rest.imobiliaria.model.Endereco;
 import edu.ifma.lpweb.rest.imobiliaria.model.Imovel;
 import lombok.Data;
 
@@ -14,9 +15,7 @@ public class ImovelRequest {
     @NotEmpty
     private String tipoImovel;
     @NotEmpty
-    private String endereco;
-    @NotEmpty
-    private String cep;
+    private Endereco endereco;
     @NotNull
     private double metragem;
     @Min(1)
@@ -41,7 +40,6 @@ public class ImovelRequest {
     private Imovel getImovel(Imovel imovel) {
         imovel.setTipoImovel(this.getTipoImovel());
         imovel.setEndereco(this.getEndereco());
-        imovel.setCep(this.getCep());
         imovel.setMetragem(this.getMetragem());
         imovel.setDormitorios(this.getDormitorios());
         imovel.setSuites(this.getSuites());
