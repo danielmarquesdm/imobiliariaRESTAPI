@@ -35,7 +35,7 @@ public class AluguelController {
         return ok(this.aluguelService.findById(id));
     }
 
-    @ApiOperation(value = "")
+    @ApiOperation(value = "Cadastra um novo aluguel")
     @PostMapping
     public ResponseEntity<AluguelResponse> save(@RequestBody @Valid AluguelRequest aluguelRequest,
                                                 UriComponentsBuilder uriBuilder) {

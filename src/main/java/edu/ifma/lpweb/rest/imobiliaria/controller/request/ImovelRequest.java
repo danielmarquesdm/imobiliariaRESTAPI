@@ -35,6 +35,10 @@ public class ImovelRequest {
 
     public Imovel toModel() {
         Imovel imovel = new Imovel();
+        return getImovel(imovel);
+    }
+
+    private Imovel getImovel(Imovel imovel) {
         imovel.setTipoImovel(this.getTipoImovel());
         imovel.setEndereco(this.getEndereco());
         imovel.setCep(this.getCep());
@@ -50,15 +54,6 @@ public class ImovelRequest {
     public Imovel toModel(Long id) {
         Imovel imovel = new Imovel();
         imovel.setId(id);
-        imovel.setTipoImovel(this.getTipoImovel());
-        imovel.setEndereco(this.getEndereco());
-        imovel.setCep(this.getCep());
-        imovel.setMetragem(this.getMetragem());
-        imovel.setDormitorios(this.getDormitorios());
-        imovel.setSuites(this.getSuites());
-        imovel.setBanheiros(this.getBanheiros());
-        imovel.setValorDeAluguelSugerido(this.getValorDeAluguelSugerido());
-        imovel.setObservacoes(this.getObservacoes());
-        return imovel;
+        return getImovel(imovel);
     }
 }
